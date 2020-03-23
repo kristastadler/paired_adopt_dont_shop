@@ -1,0 +1,20 @@
+<h1><%= link_to @shelter.name.upcase, "/shelters/#{@shelter.id}" %> ADOPTABLE PETS INDEX PAGE</h1>
+
+<% @shelter.pets.each do |pet| %>
+  <% if pet.status == "Adoptable" %>
+    <div>
+      <section id="pet-<%= pet.id %>">
+        <%= image_tag(pet.image, size: "200x200") %></br>
+        <%= link_to pet.name, "/pets/#{pet.id}" %></br>
+        <%= pet.age %></br>
+        <%= pet.sex %></br>
+        <%= link_to "Update Pet", "/pets/#{pet.id}/edit" %></br></br>
+      </section>
+    </div>
+  <% end %>
+<% end %>
+
+<div>
+  <h2>Additional Actions:</h2>
+  <h3><%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new" %></h3>
+</div>

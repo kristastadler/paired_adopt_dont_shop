@@ -1,0 +1,17 @@
+<h2><%= @pet.name.upcase %>'S SHOW PAGE</h2>
+
+<div>
+  <section class='pet-info'>
+    <%= image_tag(@pet.image, size: "200x200") %></br>
+    Description: <%= @pet.description%></br>
+    Age: <%= @pet.age%></br>
+    Gender: <%= @pet.sex%></br>
+    Adoption Status: <%= @pet.status %>
+  </section></br>
+</div
+
+<div>
+  <h2>Additional Actions:</h2>
+  <h3><%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %></h3</br>
+  <h3><%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %></h3>
+</div>

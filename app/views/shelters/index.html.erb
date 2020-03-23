@@ -1,0 +1,16 @@
+<h1>SHELTERS INDEX PAGE</h1>
+
+<% @shelters.each do |shelter| %>
+  <div>
+    <section id="shelter-<%= shelter.id %>">
+      <h3><%= link_to shelter.name, "/shelters/#{shelter.id}" %></h3>
+      <%= link_to "Update Shelter", "/shelters/#{shelter.id}/edit" %></br>
+      <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete %></br></br>
+    </section>
+  </div>
+<% end %>
+
+<div>
+  <h2>Additional Actions:</h2>
+  <h3><%= link_to "New Shelter", "/shelters/new" %></h3>
+</div>

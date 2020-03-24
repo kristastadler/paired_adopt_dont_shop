@@ -56,13 +56,18 @@ RSpec.describe "As a visitor", type: :feature do
                                           image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg")
       visit "/shelters/#{shelter_1.id}"
 
-      expect(page).to have_content(review_1.title)
-      expect(page).to have_content(review_1.rating)
-      expect(page).to have_content(review_1.content)
-      expect(page).to have_content(review_2.title)
-      expect(page).to have_content(review_2.rating)
-      expect(page).to have_content(review_2.content)
-      expect(page).to have_css("img[src*='#{review_2.image}']")
+      within "#review-#{review_1.id}" do
+        expect(page).to have_content(review_1.title)
+        expect(page).to have_content(review_1.rating)
+        expect(page).to have_content(review_1.content)
+        expect(page).to have_content("No image added")
+      end 
+      within "#review-#{review_2.id}" do
+        expect(page).to have_content(review_2.title)
+        expect(page).to have_content(review_2.rating)
+        expect(page).to have_content(review_2.content)
+        expect(page).to have_css("img[src*='#{review_2.image}']")
+      end
     end
   end
 

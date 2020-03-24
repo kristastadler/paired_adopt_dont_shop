@@ -1,13 +1,30 @@
 <h2><%= @shelter.name.upcase %></h2>
 
 <div>
-  <seciton id='shelter-info'>
+  <section id='shelter-info'>
     <%= @shelter.address %>
     <%= @shelter.city %>
     <%= @shelter.state %>
     <%= @shelter.zip %></br></br>
   </section>
 </div>
+
+
+    <h2>Shelter Reviews</h2>
+    <% @shelter.reviews.each do |review| %>
+      <div>
+      <section id="review-<%= review.id %>">
+      <h3><%= review.title %></h3>
+      <p>Rating:<%= review.rating %></p>
+      <p>Content:<%= review.content %></p>
+      <% if review.image != nil %>
+        <%= image_tag(review.image, size: "200x200") %>
+      <% elsif review.image == nil %>
+        <p>No image added</p>
+      <% end %>
+      </div>
+    <% end %>
+
 
 <div>
   <h2>Additional Actions:</h2>

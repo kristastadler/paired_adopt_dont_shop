@@ -10,19 +10,19 @@ Pet.destroy_all
 
 shelter_1 = Shelter.create(name: "Jordan's Shelter",
                            address: "123 Fake St.",
-                           city: "Arvada", 
+                           city: "Arvada",
                            state: "CO",
                            zip: 80003)
 
 shelter_2 = Shelter.create(name: "Hilary's Shelter",
                            address: "321 Real Rd.",
-                           city: "Denver", 
+                           city: "Denver",
                            state: "CO",
                            zip: 80301)
 
 shelter_3 = Shelter.create(name: "Hiljo's Shelter",
                            address: "311 Realfake Ave.",
-                           city: "Arvada", 
+                           city: "Arvada",
                            state: "CO",
                            zip: 80003)
 
@@ -40,7 +40,7 @@ rhombus = Pet.create(name: "Rhombus",
                      status: "Adoptable",
                      image: "http://cdn.akc.org/content/article-body-image/keeshond_dog_pictures_2.jpg",
                      description: "Extremely good dog.",
-                     shelter: shelter_2)     
+                     shelter: shelter_2)
 
 nova = Pet.create(name: "Nova",
                   age: "10",
@@ -57,3 +57,10 @@ roomba = Pet.create(name: "Roomba",
                     image: "http://cdn.akc.org/content/article-body-image/basset_hound_dog_pictures_.jpg",
                     description: "Hilariously good dog.",
                     shelter: shelter_2)
+review_1 = shelter_1.reviews.create(title: "Found my new best friend!",
+                                    rating: 5,
+                                    content: "Staff were so helpful and the process was easy.")
+review_2 = shelter_1.reviews.create(title: "Good experience",
+                                    rating: 4,
+                                    content: "Happy with this animal shelter",
+                                    image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg")                    

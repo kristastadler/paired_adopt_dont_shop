@@ -13,7 +13,7 @@
     <h2>Shelter Reviews</h2>
     <% @shelter.reviews.each do |review| %>
       <div>
-      <section id='shelter-#{review.id}'>
+      <section id="review-<%= review.id %>">
       <h3><%= review.title %></h3>
       <p>Rating:<%= review.rating %></p>
       <p>Content:<%= review.content %></p>

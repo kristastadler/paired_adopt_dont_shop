@@ -10,25 +10,26 @@
 </div>
 
 
-<h2>Shelter Reviews</h2>
-<% @shelter.reviews.each do |review| %>
-  <div>
-    <section id="review-<%= review.id %>">
-    <h3><%= review.title %></h3>
-    <p>Rating: <%= review.rating %></p>
-    <p>Content: <%= review.content %></p>
-      <% if review.image != nil %>
-        <%= image_tag(review.image, size: "200x200") %>
-      <% elsif review.image == nil %>
-        <p>No image added</p>
+    <h2>Shelter Reviews</h2>
+    <% @shelter.reviews.each do |review| %>
+      <div>
+      <section id="review-<%= review.id %>">
+      <h3><%= review.title %></h3>
+      <p>Rating:<%= review.rating %></p>
+      <p>Content:<%= review.content %></p>
+      <% if review.image == "No image added" || review.image == ""%>
+          <p>No image added</p>
+      <% else %>
+          <%= image_tag(review.image, size: "200x200") %>
       <% end %></br>
     <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
-  </div>
-<% end %>
+      </div>
+    <% end %>
 
 
 <div>
   <h2>Additional Actions:</h2>
+    <h3><%= link_to "Add New Review", "/shelters/#{@shelter.id}/reviews/new"%></h3>
     <h3><%= link_to "This Shelter's Pets Page", "/shelters/#{@shelter.id}/pets"%></h3>
     <h3><%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit"%></h3>
     <h3><%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %></h3>

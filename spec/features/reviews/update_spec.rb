@@ -97,5 +97,63 @@ RSpec.describe "As a visitor,", type: :feature do
       expect(page).to have_selector("input[value='This is an ok shelter.']")
       expect(page).to have_selector("input[value='No image added']")
     end
+
+    it "I'm taken to the edit form and see a flash message when title, rating, and/or content are not filled out and submit is clicked." do 
+      shelter_1 = Shelter.create!(name: "Jordan's Shelter",
+                                  address: "123 Fake St.",
+                                  city: "Arvada", 
+                                  state: "CO",
+                                  zip: 80003)
+      
+      review_1 = Review.create!(title: "Great shelter",
+                                rating: 4,
+                                content: "This is a great shelter.",
+                                image: "https://i.pinimg.com/474x/cb/36/90/cb3690e7d9bf87c612f272a9dcbe6c2b--dog-kennel-outside-outdoor-dog-kennels.jpg",
+                                shelter: shelter_1)
+      
+      review_2 = Review.create!(title: "Good shelter",
+                                rating: 3,
+                                content: "This is a good shelter.",
+                                shelter: shelter_1)
+
+      visit "/shelters/#{shelter_1.id}"
+
+      within "#review-#{review_2.id}" do 
+        expect(page).to have_link("Edit Review")
+        click_on "Edit Review"
+      end
+
+      fill_in :title, with: "Awesome shelter"
+      fill_in :rating, with: 5
+      fill_in :content, with: ""
+      fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
+      click_on "Submit"
+
+      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+
+      fill_in :title, with: "Awesome shelter"
+      fill_in :rating, with: ""
+      fill_in :content, with: "This shelter is awesome"
+      fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
+      click_on "Submit"
+
+      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+
+      fill_in :title, with: ""
+      fill_in :rating, with: 5
+      fill_in :content, with: "This shelter is awesome"
+      fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
+      click_on "Submit"
+
+      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+
+      fill_in :title, with: ""
+      fill_in :rating, with: ""
+      fill_in :content, with: ""
+      fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
+      click_on "Submit"
+
+      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+    end
   end 
 end

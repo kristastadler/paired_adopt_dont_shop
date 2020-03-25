@@ -29,6 +29,11 @@ class ReviewsController < ApplicationController
       flash[:notice] = "Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review."
     end
   end
+
+  def destroy 
+    Review.destroy(params[:review_id])
+    redirect_to "/shelters/#{params[:shelter_id]}"
+  end
   
 private
 

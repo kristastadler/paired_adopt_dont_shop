@@ -21,7 +21,8 @@
           <p>No image added</p>
       <% else %>
           <%= image_tag(review.image, size: "200x200") %>
-      <% end %>
+      <% end %></br>
+    <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
       </div>
     <% end %>
 

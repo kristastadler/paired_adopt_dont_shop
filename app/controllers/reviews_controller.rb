@@ -22,7 +22,12 @@ class ReviewsController < ApplicationController
   def update 
     review = Review.find(params[:review_id])
     review.update(review_params)
-    redirect_to "/shelters/#{review.shelter_id}"
+    if review.save
+      redirect_to "/shelters/#{review.shelter_id}"
+    else
+      redirect_to "/shelters/#{review.shelter_id}/reviews/#{review.id}/edit"
+      flash[:notice] = "Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review."
+    end
   end
   
 private

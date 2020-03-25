@@ -47,7 +47,7 @@ RSpec.describe "As a visitor,", type: :feature do
       click_on "Submit"
 
       review_3.reload
-      save_and_open_page
+
       expect(current_path).to eq("/shelters/#{shelter_1.id}")
        within "#review-#{review_3.id}" do 
         expect(page).to have_content(review_3.title)

@@ -22,7 +22,8 @@
       <% else %>
           <%= image_tag(review.image, size: "200x200") %>
       <% end %></br>
-    <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
+    <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %></br>
+    <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %></br>
       </div>
     <% end %>
 

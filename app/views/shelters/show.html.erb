@@ -10,20 +10,21 @@
 </div>
 
 
-    <h2>Shelter Reviews</h2>
-    <% @shelter.reviews.each do |review| %>
-      <div>
-      <section id="review-<%= review.id %>">
-      <h3><%= review.title %></h3>
-      <p>Rating:<%= review.rating %></p>
-      <p>Content:<%= review.content %></p>
+<h2>Shelter Reviews</h2>
+<% @shelter.reviews.each do |review| %>
+  <div>
+    <section id="review-<%= review.id %>">
+    <h3><%= review.title %></h3>
+    <p>Rating: <%= review.rating %></p>
+    <p>Content: <%= review.content %></p>
       <% if review.image != nil %>
         <%= image_tag(review.image, size: "200x200") %>
       <% elsif review.image == nil %>
         <p>No image added</p>
-      <% end %>
-      </div>
-    <% end %>
+      <% end %></br>
+    <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
+  </div>
+<% end %>
 
 
 <div>

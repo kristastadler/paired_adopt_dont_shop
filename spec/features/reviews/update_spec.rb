@@ -55,7 +55,6 @@ RSpec.describe "As a visitor,", type: :feature do
         expect(page).to have_content(review_3.content)
         expect(page).to have_css("img[src*='#{review_3.image}']")
         expect(page).to have_link("Edit Review")
-
         expect(page).to have_no_content("Ok shelter")
         expect(page).to have_no_content("3")
         expect(page).to have_no_content("This is an ok shelter.")

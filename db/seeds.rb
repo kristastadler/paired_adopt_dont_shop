@@ -57,9 +57,11 @@ roomba = Pet.create(name: "Roomba",
                     image: "http://cdn.akc.org/content/article-body-image/basset_hound_dog_pictures_.jpg",
                     description: "Hilariously good dog.",
                     shelter: shelter_2)
+
 review_1 = shelter_1.reviews.create(title: "Found my new best friend!",
                                     rating: 5,
                                     content: "Staff were so helpful and the process was easy.")
+
 review_2 = shelter_1.reviews.create(title: "Good experience",
                                     rating: 4,
                                     content: "Happy with this animal shelter",

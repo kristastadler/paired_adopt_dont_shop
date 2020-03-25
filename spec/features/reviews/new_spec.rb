@@ -56,4 +56,31 @@ RSpec.describe "As a visitor", type: :feature do
     expect(page).to have_content("No image added")
     expect(page).to have_css("img[src*='https://i.chzbgr.com/full/9059638528/hADE94BC4/fluffy-thailand-cat-cat']")
   end
+
+  it "I fill the New Review form out incorrectly, I see an error message and am redirected back to the New Review form to create a new review" do
+    shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                           address: "123 Fake St.",
+                           city: "Arvada",
+                           state: "CO",
+                           zip: 80003)
+    visit "/shelters/#{shelter_1.id}/reviews/new"
+    fill_in :rating, with: 3
+    fill_in :content, with: "Adopted a new dog"
+
+    click_on "Submit"
+
+    expect(page).to have_content("Review not created: Please fill in a title, rating, and content in order to submit a shelter review.")
+    expect(page).to have_button('Submit')
+
+    fill_in :title, with: "Lovely animal shelter"
+    fill_in :content, with: "Adopted a new dog"
+    expect(page).to have_content("Review not created: Please fill in a title, rating, and content in order to submit a shelter review.")
+    expect(page).to have_button('Submit')
+
+
+    fill_in :rating, with: 3
+    fill_in :content, with: "Adopted a new dog"
+    expect(page).to have_content("Review not created: Please fill in a title, rating, and content in order to submit a shelter review.")
+    expect(page).to have_button('Submit')
+  end
 end

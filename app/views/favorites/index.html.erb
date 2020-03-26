@@ -1,0 +1,12 @@
+<h1>FAVORITED PETS INDEX PAGE</h1>
+
+<% if @favorite.pets.empty? %>
+  "There are no favorited pets to display at this time."
+<% else %>
+  <% @favorite_pets.each do |pet| %>
+    <section id="favpet-<%= pet.id %>">
+      <%= pet.name %>
+      <%= pet.image %>
+    </section>
+  <% end %> 
+<% end %> 

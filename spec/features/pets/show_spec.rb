@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "As a visitor,", type: :feature do 
-  describe "when I visit /pets/:id" do 
+RSpec.describe "As a visitor,", type: :feature do
+  describe "when I visit /pets/:id" do
     it "then I see a page with that pet's image, name, description, age, sex, and status." do
       shelter_1 = Shelter.create(name: "Jordan's Shelter",
                             address: "123 Fake St.",
-                            city: "Arvada", 
+                            city: "Arvada",
                             state: "CO",
                             zip: 80003)
-      
+
       luna = Pet.create(name: "Luna",
                         age: "5",
                         sex: "Female",
@@ -25,6 +25,30 @@ RSpec.describe "As a visitor,", type: :feature do
       expect(page).to have_content("Age: #{luna.age}")
       expect(page).to have_content("Gender: #{luna.sex}")
       expect(page).to have_content("Adoption Status: #{luna.status}")
+    end
+  end
+
+  describe 'When a user favorites a pet to their favorite' do
+  it 'displays a flash message the indicates that the pet has been added to your favorites list' do
+    shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                          address: "123 Fake St.",
+                          city: "Arvada",
+                          state: "CO",
+                          zip: 80003)
+
+    luna = Pet.create(name: "Luna",
+                      age: "5",
+                      sex: "Female",
+                      status: "Adoptable",
+                      image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                      description: "Very good dog.",
+                      shelter: shelter_1)
+
+    visit "/pets/#{luna.id}"
+
+    click_button("Add to Favorites")
+
+    expect(page).to have_content("#{luna.name} has been added to your favorites list.")
     end
   end
 end

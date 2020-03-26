@@ -17,4 +17,8 @@ class Favorite
     @contents[id.to_s].to_i
   end
 
+  def delete_pet(id)
+    @contents[id.to_s] = 0
+  end 
+
 end

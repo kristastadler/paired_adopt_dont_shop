@@ -8,6 +8,7 @@
     Gender: <%= @pet.sex%></br>
     Adoption Status: <%= @pet.status %>
     <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %>
+    <%= button_to "Remove from Favorites", "/favorites/#{@pet.id}", method: :delete %>
   </section></br>
 </div
 

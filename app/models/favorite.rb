@@ -21,4 +21,10 @@ class Favorite
     @contents[id.to_s] = 0
   end
 
+  def reset
+    @contents.map do |id, favorite_count|
+      @contents[id] = 0
+    end
+  end
+
 end

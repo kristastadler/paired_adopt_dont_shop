@@ -57,7 +57,7 @@ RSpec.describe Favorite do
 
     expect(favorites.count_of(5)).to eq(0)
   end
-end 
+end
 
   describe "#reset" do
     it "removes all pets from favorites and sets the nav counter to 0" do
@@ -67,8 +67,8 @@ end
       })
 
     favorites.reset
-
     expect(favorites.contents).to eq({'1' => 0, '2' => 0})
+
+    end
   end
-end
 end

@@ -70,9 +70,11 @@ describe 'Once a user adds a pet to their favorites' do
       visit "/pets/#{luna.id}"
       click_button("Add to Favorites")
       expect(current_path).to eq("/pets/#{luna.id}")
+      expect(page).to_not have_button("Add to Favorites")
       click_button("Remove from Favorites")
       expect(current_path).to eq("/pets/#{luna.id}")
       expect(page).to have_content("#{luna.name} has been removed from your favorites list.")
+      expect(page).to_not have_button("Remove from Favorites")
       expect(page).to have_button("Add to Favorites")
       expect(page).to have_content("Favorites: 0")
 

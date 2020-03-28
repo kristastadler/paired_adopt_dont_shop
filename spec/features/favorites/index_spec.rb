@@ -37,19 +37,22 @@ RSpec.describe "As a visitor,", type: :feature do
       click_button "Add to Favorites"
 
       visit "/favorites"
+      
+      expect(page).to have_no_content(roomba.name)
+      expect(page).to have_no_content("There are no favorited pets to display at this time.")
 
       within "#favpet-#{luna.id}" do 
-        expect(page).to have_content(luna.name)
+        expect(page).to have_link(luna.name)
         expect(page).to have_css("img[src*='#{luna.image}']")
       end
 
       within "#favpet-#{nova.id}" do 
-        expect(page).to have_content(nova.name)
+        expect(page).to have_link(nova.name)
         expect(page).to have_css("img[src*='#{nova.image}']")
+        click_on(nova.name)
       end
 
-      expect(page).to have_no_content(roomba.name)
-      expect(page).to have_no_content("There are no favorited pets to display at this time.")
+      expect(current_path).to eq("/pets/#{nova.id}")
     end 
   end 
 

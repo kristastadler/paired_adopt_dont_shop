@@ -5,8 +5,11 @@
     <section id="favpet-<%= pet.id %>">
       <%= pet.name %></br>
       <%= image_tag(pet.image, size: "200x200") %></br></br>
+      <%= button_to "Remove from Favorites", "/favorites/#{pet.id}", method: :delete %>
     </section>
   <% elsif favorites.contents.empty? %>
-    "There are no favorited pets to display at this time."      
-  <% end %> 
-<% end %> 
+    "There are no favorited pets to display at this time."
+  <% end %>
+<% end %>
+
+<%= link_to "Remove All Favorite Pets", "/favorites", method: :delete %>

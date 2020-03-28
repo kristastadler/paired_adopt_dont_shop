@@ -1,7 +1,7 @@
 <h1>FAVORITED PETS INDEX PAGE</h1>
 
 <% if favorites.contents.empty? %>
-    There are no favorited pets to display at this time.     
+    There are no favorited pets to display at this time.
 <% else %>
   <% @pets.each do |pet| %>
     <% if favorites.contents.has_key?(pet.id.to_s) %>
@@ -10,8 +10,8 @@
         <%= image_tag(pet.image, size: "200x200") %></br>
         <%= button_to "Remove from Favorites", "/favorites/#{pet.id}", method: :delete %></br>
       </section>
-    <% end %> 
-  <% end %> 
+    <% end %>
+  <% end %>
 <% end %></br></br>
 
-<%= link_to "Remove All Favorite Pets", "/favorites", method: :delete %>
+<%= link_to "Remove All Favorite Pets", '/favorites', method: :delete %>

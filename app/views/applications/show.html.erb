@@ -10,5 +10,5 @@ Phone Number: <%= @application.phone_number %></br>
 Description: <%= @application.description %></br>
 Pets I'm Interested In Adopting:
 <% @application.pets.each do |pet| %>
-  <%= link_to pet.name, "/pets/#{pet.id}" %></br>
+  <%= link_to pet.name, "/pets/#{pet.id}" %>
 <% end %>

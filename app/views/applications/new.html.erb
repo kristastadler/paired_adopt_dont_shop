@@ -1,5 +1,10 @@
 <h3>Apply to adopt pets:</h3>
 <%= form_tag "/applications" do %>
+  <% @pets.each do |pet| %>
+    <% if favorites.contents.has_key?(pet.id.to_s) %>
+      <%= pet.name%><%= check_box_tag 'pet.name', 'pet.id'  %></br>
+    <% end %>
+  <% end %>
   <%= label_tag :name %>
   <%= text_field_tag :name %></br>
   <%= label_tag :address %>

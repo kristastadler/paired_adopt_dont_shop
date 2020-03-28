@@ -37,8 +37,8 @@ RSpec.describe "As a visitor" do
 
     visit "/applications/new"
 
-    click_box "#{luna.name}"
-    click_box "#{roomba.name}"
+    check "#{luna.name}"
+    check "#{roomba.name}"
     fill_in :name, with: "Joe Smith"
     fill_in :address, with: "123 Main Street"
     fill_in :city, with: "Anytown"
@@ -48,7 +48,7 @@ RSpec.describe "As a visitor" do
     fill_in :description, with: "I want a dog"
 
     click_button "Submit"
-
+    
     application = Application.last
 
     visit "/applications/#{application.id}"

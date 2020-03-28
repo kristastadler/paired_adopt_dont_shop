@@ -29,7 +29,41 @@ RSpec.describe "As a visitor,", type: :feature do
 
       click_link("Favorites")
       expect(current_path).to eq("/favorites")
+    end
+  end
 
+  describe "when I add a pet to my favorites" do
+    it "increases the Favorites count in my navigation bar by one" do
+      shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                              address: "123 Fake St.",
+                              city: "Arvada",
+                              state: "CO",
+                              zip: 80003)
+
+      luna = Pet.create(name: "Luna",
+                          age: "5",
+                          sex: "Female",
+                          status: "Adoptable",
+                          image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                          description: "Very good dog.",
+                          shelter: shelter_1)
+      pete = Pet.create(name: "Pete",
+                          age: "4",
+                          sex: "Male",
+                          status: "Adoptable",
+                          image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                          description: "Very good boy.",
+                          shelter: shelter_1)
+
+      visit "/pets/#{luna.id}"
+
+      click_button "Add to Favorites"
+      expect(page).to have_content "Favorites: 1"
+
+      visit "/pets/#{pete.id}"
+
+      click_button "Add to Favorites"
+      expect(page).to have_content "Favorites: 2"
     end
   end
 end

@@ -1,7 +1,7 @@
 <h1>FAVORITED PETS INDEX PAGE</h1>
 
 <% if favorites.contents.empty? %>
-    "There are no favorited pets to display at this time."      
+    There are no favorited pets to display at this time.     
 <% else %>
   <% @pets.each do |pet| %>
     <% if favorites.contents.has_key?(pet.id.to_s) %>

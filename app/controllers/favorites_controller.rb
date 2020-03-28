@@ -21,5 +21,8 @@ class FavoritesController < ApplicationController
   end
 
   def destroy_all
-    favorites.
+    favorites.reset
+    flash[:notice] = "You have no favorited pets."
+    redirect_back(fallback_location: root_path)
+  end
 end

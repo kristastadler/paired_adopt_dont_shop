@@ -170,11 +170,11 @@ RSpec.describe "As a visitor,", type: :feature do
 
       visit "/favorites"
 
-      click_button "Remove All Favorite Pets"
+      click_link "Remove All Favorite Pets"
 
 
       expect(current_path).to eq("/favorites")
       expect(page).to have_content("Favorites: 0")
     end
   end
-end 
+end

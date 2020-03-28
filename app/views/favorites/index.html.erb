@@ -7,10 +7,11 @@
     <% if favorites.contents.has_key?(pet.id.to_s) %>
       <section id="favpet-<%= pet.id %>">
         <%= link_to pet.name, "/pets/#{pet.id}" %></br>
-        <%= image_tag(pet.image, size: "200x200") %></br></br>
+        <%= image_tag(pet.image, size: "200x200") %></br>
+        <%= button_to "Remove from Favorites", "/favorites/#{pet.id}", method: :delete %></br>
       </section>
     <% end %> 
   <% end %> 
-<% end %> 
+<% end %></br></br>
 
 <%= link_to "Remove All Favorite Pets", "/favorites", method: :delete %>

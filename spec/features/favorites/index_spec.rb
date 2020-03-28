@@ -41,8 +41,9 @@ RSpec.describe "As a visitor,", type: :feature do
       expect(page).to have_no_content(roomba.name)
       expect(page).to have_no_content("There are no favorited pets to display at this time.")
 
-      within "#favpet-#{luna.id}" do 
-        expect(page).to have_link(luna.name)
+
+      within "#favpet-#{luna.id}" do
+        expect(page).to have_content(luna.name)
         expect(page).to have_css("img[src*='#{luna.image}']")
       end
 
@@ -53,8 +54,10 @@ RSpec.describe "As a visitor,", type: :feature do
       end
 
       expect(current_path).to eq("/pets/#{nova.id}")
-    end 
-  end 
+      expect(page).to have_no_content(roomba.name)
+      expect(page).to have_no_content("There are no favorited pets to display at this time.")
+    end
+  end
 
   describe "when I visit the Favorites Index page without favoriting any pets" do
     it "then I see a message saying there are no pets to display." do

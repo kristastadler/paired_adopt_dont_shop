@@ -38,6 +38,19 @@ RSpec.describe Favorite do
   end
   end
 
+  describe "delete_pet" do
+    it "deletes a pet to its contents" do
+      favorites = Favorite.new({
+        '1' => 1,
+        '2' => 0
+        })
+    favorites.delete_pet(1)
+
+
+    expect(favorites.contents).to eq({'1' => 0, '2' => 0})
+    end
+  end 
+
   describe "#count_of" do
   it "returns the count of all pets in the favorites" do
     favorites = Favorite.new({})

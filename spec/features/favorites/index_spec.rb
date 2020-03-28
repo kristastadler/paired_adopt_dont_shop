@@ -38,15 +38,18 @@ RSpec.describe "As a visitor,", type: :feature do
 
       visit "/favorites"
 
-      within "#pet-#{luna.id}" do 
-        expect(page).to have_content()
+      within "#favpet-#{luna.id}" do 
+        expect(page).to have_content(luna.name)
+        expect(page).to have_css("img[src*='#{luna.image}']")
       end
 
-      within "#pet-#{nova.id}" do 
-        expect(page).to have_content()
+      within "#favpet-#{nova.id}" do 
+        expect(page).to have_content(nova.name)
+        expect(page).to have_css("img[src*='#{nova.image}']")
       end
 
       expect(page).to have_no_content(roomba.name)
+      expect(page).to have_no_content("There are no favorited pets to display at this time.")
     end 
   end 
 

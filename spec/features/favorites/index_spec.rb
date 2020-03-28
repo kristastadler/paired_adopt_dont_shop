@@ -125,11 +125,56 @@ RSpec.describe "As a visitor,", type: :feature do
 
       within "#favpet-#{luna.id}" do
       click_button "Remove from Favorites"
-      end 
+      end
 
       expect(current_path).to eq("/favorites")
       expect(page).to have_content("Favorites: 0")
     end
   end
 
-end
+  describe "when I visit the Favorites Index page" do
+    it "then I can remove all of favorited pets at once." do
+
+      shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                                 address: "123 Fake St.",
+                                 city: "Arvada",
+                                 state: "CO",
+                                 zip: 80003)
+
+      luna = Pet.create(name: "Luna",
+                        age: "5",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                        shelter: shelter_1)
+
+      nova = Pet.create(name: "Nova",
+                        age: "10",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/border_collie_dog_pictures_.jpg",
+                        shelter: shelter_1)
+
+      roomba = Pet.create(name: "Roomba",
+                        age: "7",
+                        sex: "Male",
+                        status: "Pending Adoption",
+                        image: "http://cdn.akc.org/content/article-body-image/basset_hound_dog_pictures_.jpg",
+                        shelter: shelter_1)
+
+      visit "/pets/#{luna.id}"
+      click_button "Add to Favorites"
+
+      visit "/pets/#{roomba.id}"
+      click_button "Add to Favorites"
+
+      visit "/favorites"
+
+      click_button "Remove All Favorite Pets"
+
+
+      expect(current_path).to eq("/favorites")
+      expect(page).to have_content("Favorites: 0")
+    end
+  end
+end 

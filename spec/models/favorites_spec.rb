@@ -38,7 +38,7 @@ RSpec.describe Favorite do
   end
   end
 
-  describe "delete_pet" do
+  describe "#{}delete_pet" do
     it "deletes a pet to its contents" do
       favorites = Favorite.new({
         '1' => 1,

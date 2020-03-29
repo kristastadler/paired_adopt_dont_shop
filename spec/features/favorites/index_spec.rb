@@ -37,7 +37,7 @@ RSpec.describe "As a visitor,", type: :feature do
       click_button "Add to Favorites"
 
       visit "/favorites"
-      
+
       expect(page).to have_no_content(roomba.name)
       expect(page).to have_no_content("There are no favorited pets to display at this time.")
 
@@ -181,6 +181,48 @@ RSpec.describe "As a visitor,", type: :feature do
 
       expect(current_path).to eq("/favorites")
       expect(page).to have_content("Favorites: 0")
+    end
+
+    it "then I see a link for adopting my favorited pets and when I click that link I'm taken to a new application form" do
+
+      shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                                 address: "123 Fake St.",
+                                 city: "Arvada",
+                                 state: "CO",
+                                 zip: 80003)
+
+      luna = Pet.create(name: "Luna",
+                        age: "5",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                        shelter: shelter_1)
+
+      nova = Pet.create(name: "Nova",
+                        age: "10",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/border_collie_dog_pictures_.jpg",
+                        shelter: shelter_1)
+
+      roomba = Pet.create(name: "Roomba",
+                        age: "7",
+                        sex: "Male",
+                        status: "Pending Adoption",
+                        image: "http://cdn.akc.org/content/article-body-image/basset_hound_dog_pictures_.jpg",
+                        shelter: shelter_1)
+
+      visit "/pets/#{luna.id}"
+      click_button "Add to Favorites"
+
+      visit "/pets/#{roomba.id}"
+      click_button "Add to Favorites"
+
+      visit "/favorites"
+
+      click_link "Apply to Adopt Favorite Pets"
+
+      expect(current_path).to eq("/applications/new")
     end
   end
 end

@@ -1,22 +1,24 @@
 <h3>Apply to adopt pets:</h3>
 
 <%= form_tag "/applications" do %>
-  Pets I'd Like to Adopt:
-  <%= collection_check_boxes(:favorite_pets, :pet_ids, @pets, :id, :name) %></br>
-
-  <%= label_tag :name %>
-  <%= text_field_tag :name %></br>
-  <%= label_tag :address %>
-  <%= text_field_tag :address %></br>
-  <%= label_tag :city %>
-  <%= text_field_tag :city %></br>
-  <%= label_tag :state %>
-  <%= text_field_tag :state %></br>
-  <%= label_tag :zip %>
-  <%= text_field_tag :zip %></br>
-  <%= label_tag :phone_number %>
-  <%= text_field_tag :phone_number %></br>
-  <%= label_tag :description %>
-  <%= text_field_tag :description %></br>
-  <%= submit_tag 'Submit'%>
+  <div>
+    Pets I'd Like to Adopt:</br>
+    <%= collection_check_boxes(:favorite_pets, :pet_ids, @pets, :id, :name) %></br></br>
+  
+    <%= label_tag :name %>
+    <%= text_field_tag :name %></br>
+    <%= label_tag :address %>
+    <%= text_field_tag :address %></br>
+    <%= label_tag :city %>
+    <%= text_field_tag :city %></br>
+    <%= label_tag :state %>
+    <%= text_field_tag :state %></br>
+    <%= label_tag :zip %>
+    <%= text_field_tag :zip %></br>
+    <%= label_tag :phone_number %>
+    <%= text_field_tag :phone_number %></br>
+    <%= label_tag :description, "Description of why you'd make a good owner" %></br>
+    <%= text_area_tag :description, nil, size: "55x10" %></br>
+    <%= submit_tag 'Submit'%>
+  </div>
 <% end %>

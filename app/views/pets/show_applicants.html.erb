@@ -1,5 +1,9 @@
 <h2><%= @pet.name.upcase %>'S ADOPTION APPLICANTS</h2>
 
-<% @pet.applications.each do |application| %>
- <%= link_to application.name, "/applications/#{application.id}" %></br>
-<% end %>
+<% if @pet.applications.count > 0 %>
+  <% @pet.applications.each do |application| %>
+   <%= link_to application.name, "/applications/#{application.id}" %></br>
+  <% end %>
+<% else %>
+  There are no applications for this pet, yet.
+<%end %>  

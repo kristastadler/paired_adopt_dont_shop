@@ -78,4 +78,27 @@ RSpec.describe "As a visitor,", type: :feature do
     expect(page).to_not have_content("Joe Smith")
     end
   end
+
+  describe "when I visit a pets applicants show page and there are no applications for the pet" do
+    it "shows a message that there are no applications for this pet yet" do
+
+      shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                                 address: "123 Fake St.",
+                                 city: "Arvada",
+                                 state: "CO",
+                                 zip: 80003)
+
+      luna = Pet.create(name: "Luna",
+                        age: "5",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                        shelter: shelter_1)
+
+    visit "/pets/#{luna.id}/applications"
+
+    expect(page).to have_content("There are no applications for this pet, yet.")
+  end
+end                
+
 end

@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  def index 
+  def index
     @pets = Pet.all
   end
 
@@ -7,25 +7,30 @@ class PetsController < ApplicationController
     @pet = Pet.find(params[:pet_id])
   end
 
-  def edit 
+  def edit
     @pet = Pet.find(params[:pet_id])
   end
 
   def update
     pet = Pet.find(params[:pet_id])
     pet.update(pet_params)
-    pet.save 
+    pet.save
     redirect_to "/pets/#{pet.id}"
   end
 
-  def destroy 
+  def destroy
     pet = Pet.find(params[:pet_id])
-    pet.destroy 
+    pet.destroy
     redirect_to "/pets"
   end
 
-  private 
+  def show_applicants
+    @pet = Pet.find(params[:pet_id])
+  end
+
+  private
     def pet_params
       params.permit(:image, :name, :description, :age, :sex)
     end
+
 end

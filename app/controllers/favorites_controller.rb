@@ -2,6 +2,14 @@ class FavoritesController < ApplicationController
 
   def index
     @pets = Pet.all
+    applications = Application.all
+    @unique_pets = []
+    applications.each do |application|
+      application.pets.each do |pet|
+          @unique_pets << pet
+      end
+    end
+    @unique_pets = @unique_pets.uniq
   end
 
   def update

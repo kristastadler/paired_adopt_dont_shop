@@ -13,7 +13,7 @@ class ApplicationsController < ApplicationController
   def create
     application = Application.create!(application_params)
     params[:favorite_pets][:pet_ids].each do |favorite_pet_id|
-      pet = ApplicationPet.create(application_id: application.id,
+    pet = ApplicationPet.create(application_id: application.id,
                                 pet_id: favorite_pet_id)
       end
     redirect_to "/applications/#{application.id}"

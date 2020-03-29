@@ -14,5 +14,14 @@
   <% end %>
 <% end %></br></br>
 
+<section id="openapplications">
+  <h2>Pets with at least one open application:</h2> </br>
+    <% @unique_pets.each do |pet| %>
+      <%= link_to pet.name, "/pets/#{pet.id}" %></br>
+    <% end %>
+</section></br>
+
+<h2>Additional Actions:</h2> </br>
+
 <%= link_to "Apply to Adopt Favorite Pets", '/applications/new' %></br>
 <%= link_to "Remove All Favorite Pets", '/favorites', method: :delete %>

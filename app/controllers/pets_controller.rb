@@ -5,6 +5,9 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:pet_id])
+    if @pet.approved_application != nil
+      @application = Application.find(@pet.approved_application)
+    end
   end
 
   def edit
@@ -30,9 +33,9 @@ class PetsController < ApplicationController
 
   def update_adopt
     pet = Pet.find(params[:pet_id])
-    pet.update(status: "Pending Adoption")
+    application = Application.find(params[:application_id])
+    pet.update(status: "Pending Adoption", approved_application: application.id)
     pet.save
-    require "pry"; binding.pry
     redirect_to "/pets/#{pet.id}"
   end
 

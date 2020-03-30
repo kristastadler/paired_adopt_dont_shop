@@ -31,6 +31,14 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:application_id])
   end
 
+  def update
+    @application = Application.find(params[:application_id])
+    @application.pets.each do |pet|
+      pet.update(status: "Pending Adoption", approved_application: @application.id)
+      pet.save
+    end 
+  end
+
 private
 
 def application_params

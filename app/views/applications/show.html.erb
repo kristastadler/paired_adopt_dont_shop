@@ -17,3 +17,5 @@ Pets I'm Interested In Adopting:
   <% end %>
   </section>
 <% end %>
+
+<%= link_to "Approve Application for All Pets", "/applications/#{@application.id}", method: :post %>

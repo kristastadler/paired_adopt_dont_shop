@@ -11,12 +11,20 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    application = Application.create!(application_params)
-    params[:favorite_pets][:pet_ids].each do |favorite_pet_id|
-    pet = ApplicationPet.create(application_id: application.id,
-                                pet_id: favorite_pet_id)
+    params[:favorite_pets][:pet_ids].delete_if {|id| id.blank?}
+    application = Application.new(application_params)
+    if application.save
+      pet_ids = params[:favorite_pets][:pet_ids]
+      pet_ids.each do |favorite_pet_id|
+        pet = ApplicationPet.create(application_id: application.id, pet_id: favorite_pet_id)
+        session[:favorites].delete(favorite_pet_id)
       end
-    redirect_to "/applications/#{application.id}"
+      flash[:notice] = "Application created successfully for all selected pets."
+      redirect_to "/favorites"
+    else 
+      flash[:notice] = "You must fill out all fields in order to submit this application."
+      redirect_to "/applications/new"
+    end
   end
 
   def show

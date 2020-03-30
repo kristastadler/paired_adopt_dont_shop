@@ -35,3 +35,13 @@
    text-align: center;
    color: blue;
  }
+
+ .notice-flash {
+  padding: 10px;
+  background-color: red;
+  color: white;
+ }
+
+ p {
+  text-align: center;
+ }

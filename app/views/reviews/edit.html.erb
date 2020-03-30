@@ -1,12 +1,14 @@
-Edit Review #<%= @review.id %> for <%= @review.shelter.name %>:
-<%= form_tag "/shelters/#{@review.shelter_id}/reviews/#{@review.id}", method: :patch do %>
-  <%= label_tag :title %>
-  <%= text_field_tag :title, @review.title %></br>
-  <%= label_tag :rating %>
-  <%= text_field_tag :rating, @review.rating %></br>
-  <%= label_tag :content %>
-  <%= text_field_tag :content, @review.content %></br>
-  <%= label_tag :image, "Image (optional)" %>
-  <%= text_field_tag :image, @review.image %></br>
-  <%= submit_tag "Submit" %>
-<% end %>
+<h3>Edit Review #<%= @review.id %> for <%= @review.shelter.name %>:</h3>
+<div>
+  <%= form_tag "/shelters/#{@review.shelter_id}/reviews/#{@review.id}", method: :patch do %>
+    <%= label_tag :title %>
+    <%= text_field_tag :title, @review.title %></br>
+    <%= label_tag :rating %>
+    <%= text_field_tag :rating, @review.rating %></br>
+    <%= label_tag :content %>
+    <%= text_field_tag :content, @review.content %></br>
+    <%= label_tag :image, "Image (optional)" %>
+    <%= text_field_tag :image, @review.image %></br>
+    <%= submit_tag "Submit" %>
+  <% end %>
+</div>

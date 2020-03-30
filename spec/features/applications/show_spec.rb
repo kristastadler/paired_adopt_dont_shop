@@ -61,7 +61,7 @@ require 'rails_helper'
     expect(page).to have_content("On hold for Joe Smith")
   end
 
-  it "I cannot see approve application if any of the pet's status equals Adoptable." do
+  it "I cannot see approve application if any of the pet's status equals Adoption Pending." do
     shelter_1 = Shelter.create(name: "Jordan's Shelter",
                                  address: "123 Fake St.",
                                  city: "Arvada",

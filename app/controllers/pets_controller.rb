@@ -27,10 +27,6 @@ class PetsController < ApplicationController
     redirect_to "/pets"
   end
 
-  def show_applicants
-    @pet = Pet.find(params[:pet_id])
-  end
-
   private
     def pet_params
       params.permit(:image, :name, :description, :age, :sex, :status)

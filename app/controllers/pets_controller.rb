@@ -28,9 +28,17 @@ class PetsController < ApplicationController
     @pet = Pet.find(params[:pet_id])
   end
 
+  def update_adopt
+    pet = Pet.find(params[:pet_id])
+    pet.update(status: "Pending Adoption")
+    pet.save
+    require "pry"; binding.pry
+    redirect_to "/pets/#{pet.id}"
+  end
+
   private
     def pet_params
-      params.permit(:image, :name, :description, :age, :sex)
+      params.permit(:image, :name, :description, :age, :sex, :status)
     end
 
 end

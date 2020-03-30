@@ -21,7 +21,7 @@ class ApplicationsController < ApplicationController
       end
       flash[:notice] = "Application created successfully for all selected pets."
       redirect_to "/favorites"
-    else 
+    else
       flash[:notice] = "You must fill out all fields in order to submit this application."
       redirect_to "/applications/new"
     end
@@ -30,8 +30,7 @@ class ApplicationsController < ApplicationController
   def show
     @application = Application.find(params[:application_id])
   end
-
-
+  
 private
 
 def application_params

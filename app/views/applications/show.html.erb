@@ -12,6 +12,6 @@ Pets I'm Interested In Adopting:
 <% @application.pets.each do |pet| %>
   <section id="applicationpet-<%= pet.id %>">
   <%= link_to pet.name, "/pets/#{pet.id}" %>
-  <%= link_to "Approve Application", "/pets/#{pet.id}/#{@application.id}", method: :patch %>
+  <%= link_to "Approve Application", "/applications/#{pet.id}/#{@application.id}", method: :patch %>
   </section>
 <% end %>

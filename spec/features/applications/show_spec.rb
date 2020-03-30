@@ -69,7 +69,7 @@ require 'rails_helper'
 end
 
 RSpec.describe "I can visit an application show page for an application with more than one pet" do
-  it "and approve the application for any number of those pets" do
+  it "and approve the application for all pets in the application" do
 
   shelter_1 = Shelter.create(name: "Jordan's Shelter",
                              address: "123 Fake St.",
@@ -113,27 +113,15 @@ RSpec.describe "I can visit an application show page for an application with mor
 
   visit "/applications/#{application.id}"
 
-  within "#applicationpet-#{luna.id}" do
-    expect(page).to have_link("Approve Application")
-  end
+  click_link("Approve Application for All Pets")
 
-  within "#applicationpet-#{nova.id}" do
-    click_link("Approve Application")
-  end
-
-  expect(current_path).to eq("/pets/#{nova.id}")
+  visit "/pets/#{nova.id}"
 
   expect(page).to have_content("Pending Adoption")
   expect(page).to_not have_content("Adoptable")
   expect(page).to have_content("On hold for Joe Smith")
 
-  visit "/applications/#{application.id}"
-
-  within "#applicationpet-#{luna.id}" do
-    click_link("Approve Application")
-  end
-
-  expect(current_path).to eq("/pets/#{luna.id}")
+  visit "/pets/#{luna.id}"
 
   expect(page).to have_content("Pending Adoption")
   expect(page).to_not have_content("Adoptable")

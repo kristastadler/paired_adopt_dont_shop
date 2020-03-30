@@ -15,3 +15,5 @@ Pets I'm Interested In Adopting:
   <%= link_to "Approve Application", "/pets/#{pet.id}/#{@application.id}", method: :patch %>
   </section>
 <% end %>
+
+<%= link_to "Approve Application for All Pets", "/applications/#{@application.id}", method: :post %>

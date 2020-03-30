@@ -5,6 +5,9 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:pet_id])
+    if @pet.approved_application != nil
+      @application = Application.find(@pet.approved_application)
+    end
   end
 
   def edit
@@ -30,7 +33,7 @@ class PetsController < ApplicationController
 
   private
     def pet_params
-      params.permit(:image, :name, :description, :age, :sex)
+      params.permit(:image, :name, :description, :age, :sex, :status)
     end
 
 end

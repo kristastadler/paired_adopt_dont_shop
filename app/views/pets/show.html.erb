@@ -6,15 +6,15 @@
     Description: <%= @pet.description%></br>
     Age: <%= @pet.age%></br>
     Gender: <%= @pet.sex%></br>
-    Adoption Status: <%= @pet.status %>
+    Adoption Status: <%= @pet.status %></br>
+    <% if @pet.approved_application != nil %>
+    <h4>On hold for <%= @application.name %></h4>
+    <% end %>
     <% if favorites.contents[@pet.id.to_s] == 1 %>
       <%= button_to "Remove from Favorites", "/favorites/#{@pet.id}", method: :delete %>
     <% else %>
       <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %>
     <% end %>
-
-
-
 
   </section></br>
 </div

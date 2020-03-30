@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "As a visitor,", type: :feature do
   describe "when I visit a pets show page" do
-    it "I see a link to view all applications for the pet and when I click the link it takes me to the pets applicants show page where I see a list of all the names, as links, of applicants for this pet" do
+    it "I see a link to view all applications for the pet and when I click the link it takes me to the pets applications show page where I see a list of all the names, as links, of applicants for this pet" do
       shelter_1 = Shelter.create(name: "Jordan's Shelter",
                                  address: "123 Fake St.",
                                  city: "Arvada",
@@ -99,6 +99,7 @@ RSpec.describe "As a visitor,", type: :feature do
 
     expect(page).to have_content("There are no applications for this pet, yet.")
   end
-end                
+end
+
 
 end

@@ -65,7 +65,7 @@ RSpec.describe "As a visitor" do
     expect(page).to_not have_link(nova.name)
   end
 
-  it "I cannot fill out a blank application and proceed." do
+  it "I cannot fill out a blank application or have no checkboxes checkd and proceed." do
     shelter_1 = Shelter.create(name: "Jordan's Shelter",
                               address: "123 Fake St.",
                               city: "Arvada",
@@ -104,6 +104,18 @@ RSpec.describe "As a visitor" do
 
     visit "/applications/new"
 
+    fill_in :name, with: ""
+    fill_in :address, with: "123 Main Street"
+    fill_in :city, with: "Anytown"
+    fill_in :state, with: "CO"
+    fill_in :zip, with: "01532"
+    fill_in :phone_number, with: "303-123-4567"
+    fill_in :description, with: "I want a dog"
+
+    click_button "Submit"
+
+    expect(page).to have_content("You must fill out all fields and/or check at least one box in order to submit this application.")
+
     check "#{luna.name}"
     check "#{roomba.name}"
     fill_in :name, with: ""
@@ -116,6 +128,6 @@ RSpec.describe "As a visitor" do
 
     click_button "Submit"
 
-    expect(page).to have_content("You must fill out all fields in order to submit this application.")
+    expect(page).to have_content("You must fill out all fields and/or check at least one box in order to submit this application.")
   end
 end

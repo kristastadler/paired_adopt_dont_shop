@@ -81,6 +81,7 @@ RSpec.describe "As a visitor,", type: :feature do
       click_on "Submit"
 
       expect(page).to have_content("Sex can't be blank")
+      expect(current_path).to eq("/pets/#{rhombus.id}/edit")
     end 
   end 
 end

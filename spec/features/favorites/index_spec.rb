@@ -226,7 +226,6 @@ RSpec.describe "As a visitor,", type: :feature do
     end
 
     it "I see a section on the page that has a list of pet names, as links to their show pages, that have at least one application on them." do
-
       shelter_1 = Shelter.create(name: "Jordan's Shelter",
                                  address: "123 Fake St.",
                                  city: "Arvada",
@@ -279,10 +278,60 @@ RSpec.describe "As a visitor,", type: :feature do
       visit "/favorites"
 
       within "#openapplications" do
-      expect(page).to have_link("Luna")
-      expect(page).to have_link("Roomba")
-      expect(page).to_not have_link("Nova")
+        expect(page).to have_link("Luna")
+        expect(page).to have_link("Roomba")
+        expect(page).to_not have_link("Nova")
       end
+    end
+
+    it "after favoriting a pet then deleting that pet, I should see it deleted from my favorites, too." do 
+      shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                                 address: "123 Fake St.",
+                                 city: "Arvada",
+                                 state: "CO",
+                                 zip: 80003)
+
+      luna = Pet.create(name: "Luna",
+                        age: "5",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                        shelter: shelter_1)
+
+      nova = Pet.create(name: "Nova",
+                        age: "10",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/border_collie_dog_pictures_.jpg",
+                        shelter: shelter_1)
+
+      roomba = Pet.create(name: "Roomba",
+                        age: "7",
+                        sex: "Male",
+                        status: "Pending Adoption",
+                        image: "http://cdn.akc.org/content/article-body-image/basset_hound_dog_pictures_.jpg",
+                        shelter: shelter_1)
+
+      visit "/pets/#{luna.id}"
+      click_button "Add to Favorites"
+
+      visit "/pets/#{roomba.id}"
+      click_button "Add to Favorites"
+
+      visit "/pets/#{nova.id}"
+      click_button "Add to Favorites"
+
+      visit "/pets"
+      
+      within "#pet-#{roomba.id}" do
+        click_on "Delete Pet"
+      end
+
+      visit "/favorites"
+
+      expect(page).to have_content(nova.name)
+      expect(page).to have_content(luna.name)
+      expect(page).to_not have_content(roomba.name)
     end
   end
 end

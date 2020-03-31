@@ -3,7 +3,7 @@
 <%= form_tag "/applications" do %>
   <div>
     Pets I'd Like to Adopt:</br>
-    <%= collection_check_boxes(:favorite_pets, :pet_ids, @pets, :id, :name) %></br></br>
+    <%= collection_check_boxes(:favorite_pets, :pet_ids, @pets, :id, :name, {required: :true}) %></br></br>
   
     <%= label_tag :name %>
     <%= text_field_tag :name %></br>

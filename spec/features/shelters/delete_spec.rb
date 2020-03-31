@@ -163,6 +163,11 @@ RSpec.describe "As a visitor", type: :feature do
                                city: "Arvada",
                                state: "CO",
                                zip: 80003)
+    shelter_2 = Shelter.create(name: "Hilary's Shelter",
+                             address: "321 Real Rd.",
+                             city: "Denver",
+                             state: "CO",
+                             zip: 80301)
 
     luna = Pet.create(name: "Luna",
                      age: "5",
@@ -177,12 +182,15 @@ RSpec.describe "As a visitor", type: :feature do
                                    rating: 4,
                                    content: "Happy with this animal shelter",
                                    image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg")
+    review_3 = shelter_2.reviews.create(title: "Okay experience",
+                                  rating: 3,
+                                  content: "Meh")
 
     visit "/shelters/#{shelter_1.id}"
-    expect(Review.all.length).to eql(2)
+    expect(Review.all.length).to eq(3)
 
     click_on "Delete Shelter"
-    expect(Review.all.length).to eql(0)
+    expect(Review.all.length).to eq(1)
 
   end
 end

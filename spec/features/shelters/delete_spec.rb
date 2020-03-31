@@ -154,3 +154,35 @@ RSpec.describe "As a visitor", type: :feature do
   end
 end
 end
+
+RSpec.describe "As a visitor", type: :feature do
+  it "when I delete a shelter, all of it's reviews are deleted, too" do
+
+    shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                               address: "123 Fake St.",
+                               city: "Arvada",
+                               state: "CO",
+                               zip: 80003)
+
+    luna = Pet.create(name: "Luna",
+                     age: "5",
+                     sex: "Female",
+                     status: "Adoptable",
+                     image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                     shelter: shelter_1)
+    review_1 = shelter_1.reviews.create(title: "Found my new best friend!",
+                                   rating: 5,
+                                   content: "Staff were so helpful and the process was easy.")
+    review_2 = shelter_1.reviews.create(title: "Good experience",
+                                   rating: 4,
+                                   content: "Happy with this animal shelter",
+                                   image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg")
+
+    visit "/shelters/#{shelter_1.id}"
+    expect(Review.all.length).to eql(2)
+
+    click_on "Delete Shelter"
+    expect(Review.all.length).to eql(0)
+
+  end
+end

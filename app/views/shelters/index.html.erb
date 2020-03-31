@@ -5,7 +5,9 @@
     <section id="shelter-<%= shelter.id %>">
       <h3><%= link_to shelter.name, "/shelters/#{shelter.id}" %></h3>
       <%= link_to "Update Shelter", "/shelters/#{shelter.id}/edit" %></br>
+      <% if shelter.count_approved_applications == 0 %>
       <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete %></br></br>
+      <% end %>
     </section>
   </div>
 <% end %>

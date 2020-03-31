@@ -22,7 +22,7 @@ class ApplicationsController < ApplicationController
       flash[:notice] = "Application created successfully for all selected pets."
       redirect_to "/favorites"
     else
-      flash[:notice] = "You must fill out all fields in order to submit this application."
+      flash[:notice] = "You must fill out all fields and/or check at least one box in order to submit this application."
       redirect_to "/applications/new"
     end
   end

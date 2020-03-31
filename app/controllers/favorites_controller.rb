@@ -24,12 +24,12 @@ class FavoritesController < ApplicationController
     pet = Pet.find(params[:pet_id])
     session[:favorites].delete(params[:pet_id])
     flash[:notice] = "#{pet.name} has been removed from your favorites list."
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: "/")
   end
 
   def destroy_all
     session[:favorites] = {}
     flash[:notice] = "You have no favorited pets."
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: "/")
   end
 end

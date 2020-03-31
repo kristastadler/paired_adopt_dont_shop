@@ -44,6 +44,43 @@ RSpec.describe "As a visitor,", type: :feature do
       expect(page).to have_content("4")
       expect(page).to have_content("Female")
       expect(page).to have_no_content(luna.name)
-      end 
+    end 
+
+    it "and click link to Update Pet, fill out incomplete information, and I get a flash message with fields I'm missing." do
+      shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                                 address: "123 Fake St.",
+                                 city: "Arvada", 
+                                 state: "CO",
+                                 zip: 80003)
+              
+      luna = Pet.create(name: "Luna",
+                        age: "5",
+                        sex: "Female",
+                        status: "Adoptable",
+                        image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                        description: "Very good dog.",
+                        shelter: shelter_1)
+
+      rhombus = Pet.create(name: "Rhombus",
+                           age: "2",
+                           sex: "Male",
+                           status: "Adoptable",
+                           image: "http://cdn.akc.org/content/article-body-image/keeshond_dog_pictures_2.jpg",
+                           description: "Extremely good dog.",
+                           shelter: shelter_1)
+
+      visit "/pets/#{rhombus.id}"
+
+      click_on "Update Pet"
+
+      fill_in :image, with: "http://cdn.akc.org/content/article-body-image/golden_retriever_puppy_sleeping_dog_pictures.jpg"
+      fill_in :name, with: "Triangle"
+      fill_in :description, with: "Acute dog!"
+      fill_in :age, with: "4"
+      fill_in :sex, with: ""
+      click_on "Submit"
+
+      expect(page).to have_content("Sex can't be blank")
+    end 
   end 
 end

@@ -32,7 +32,7 @@ class SheltersController < ApplicationController
       redirect_to "/shelters/#{shelter.id}"
     else
       flash[:notice] = shelter.errors.full_messages.to_sentence
-      redirect_to "/shelters/#{shelter.id}"
+      redirect_to "/shelters/#{shelter.id}/edit"
     end
   end
 

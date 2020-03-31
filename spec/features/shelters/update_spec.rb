@@ -79,13 +79,15 @@ RSpec.describe "As a visitor", type: :feature do
     fill_in :state, with: "CO"
     fill_in :zip, with: 80003
 
+    click_button "Submit"
+
     expect(page).to have_content("City can't be blank")
-    click_on "Update Shelter"
+
 
     fill_in :name, with: "Krista's Shelter"
     fill_in :address, with: "123 Fake St."
     fill_in :city, with: "Arvada"
-    click_on "Create Shelter"
+    click_on "Submit"
 
     expect(page).to have_content("State can't be blank and Zip can't be blank")
 

@@ -102,3 +102,55 @@ RSpec.describe "As a visitor", type: :feature do
 
   end
 end
+
+RSpec.describe "As a visitor", type: :feature do
+  describe "as long as a shelter doesn't have any pets with a pending status, I can delete the shelter" do
+    it "and when the shelter is deleted, all of its pets are deleted, too" do
+
+    shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                               address: "123 Fake St.",
+                               city: "Arvada",
+                               state: "CO",
+                               zip: 80003)
+
+    shelter_2 = Shelter.create(name: "Hilary's Shelter",
+                              address: "321 Real Rd.",
+                              city: "Denver",
+                              state: "CO",
+                              zip: 80301)
+
+    luna = Pet.create(name: "Luna",
+                     age: "5",
+                     sex: "Female",
+                     status: "Adoptable",
+                     image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                     shelter: shelter_1)
+
+    roomba = Pet.create(name: "Roomba",
+                     age: "7",
+                     sex: "Male",
+                     status: "Adoptable",
+                     image: "http://cdn.akc.org/content/article-body-image/basset_hound_dog_pictures_.jpg",
+                     shelter: shelter_1)
+
+    sparky = Pet.create(name: "Sparky",
+                    age: "2",
+                    sex: "Male",
+                    status: "Adoptable",
+                    image: "http://cdn.akc.org/content/article-body-image/border_collie_dog_pictures_.jpg",
+                    shelter: shelter_2)
+
+
+
+    visit "/shelters/#{shelter_1.id}"
+
+    click_on "Delete Shelter"
+
+    visit "/pets"
+
+    expect(page).to_not have_content(luna.name)
+    expect(page).to_not have_content(roomba.name)
+    expect(page).to have_content(sparky.name)
+  end
+end
+end

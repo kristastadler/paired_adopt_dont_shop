@@ -31,3 +31,74 @@ RSpec.describe "As a visitor", type: :feature do
     end
   end
 end
+
+RSpec.describe "As a visitor", type: :feature do
+  it "I cannot delete a shelter if that shelter has approved applications for any of their pets" do
+    shelter_1 = Shelter.create(name: "Jordan's Shelter",
+                               address: "123 Fake St.",
+                               city: "Arvada",
+                               state: "CO",
+                               zip: 80003)
+
+    shelter_2 = Shelter.create(name: "Hilary's Shelter",
+                               address: "321 Real Rd.",
+                               city: "Denver",
+                               state: "CO",
+                               zip: 80301)
+
+   luna = Pet.create(name: "Luna",
+                     age: "5",
+                     sex: "Female",
+                     status: "Adoptable",
+                     image: "http://cdn.akc.org/content/article-body-image/norwegianelkhoundpuppy_dog_pictures.jpg",
+                     shelter: shelter_1)
+
+   roomba = Pet.create(name: "Roomba",
+                     age: "7",
+                     sex: "Male",
+                     status: "Pending Adoption",
+                     image: "http://cdn.akc.org/content/article-body-image/basset_hound_dog_pictures_.jpg",
+                     shelter: shelter_2)
+
+    visit "/pets/#{luna.id}"
+    click_button "Add to Favorites"
+
+    visit "/applications/new"
+
+    check "#{luna.name}"
+    fill_in :name, with: "Joe Smith"
+    fill_in :address, with: "123 Main Street"
+    fill_in :city, with: "Anytown"
+    fill_in :state, with: "CO"
+    fill_in :zip, with: "01532"
+    fill_in :phone_number, with: "303-123-4567"
+    fill_in :description, with: "I want a dog"
+
+    click_button "Submit"
+
+    application = Application.last
+
+    visit "/applications/#{application.id}"
+
+    within "#applicationpet-#{luna.id}" do
+      click_link "Approve Application"
+    end
+
+    visit "/shelters/#{shelter_1.id}"
+    expect(page).to_not have_link("Delete Shelter")
+
+    visit "/shelters/#{shelter_2.id}"
+    expect(page).to have_link("Delete Shelter")
+
+    visit "/shelters"
+
+    within "#shelter-#{shelter_1.id}" do
+      expect(page).to_not have_link("Delete Shelter")
+    end
+
+    within "#shelter-#{shelter_2.id}" do
+      expect(page).to have_link("Delete Shelter")
+    end
+
+  end
+end

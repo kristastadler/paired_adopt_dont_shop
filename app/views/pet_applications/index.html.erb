@@ -1,4 +1,4 @@
-<h2><%= @pet.name.upcase %>'S ADOPTION APPLICANTS</h2>
+<h2><%= link_to @pet.name.upcase, "/pets/#{@pet.id}" %>'S ADOPTION APPLICANTS</h2>
 
 <div>
   <% if @pet.applications.count > 0 %>

@@ -1,5 +1,5 @@
 class PetApplicationsController < ApplicationController
-  def show
+  def index
     @pet = Pet.find(params[:pet_id])
   end
 

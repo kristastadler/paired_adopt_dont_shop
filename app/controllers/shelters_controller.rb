@@ -16,9 +16,8 @@ class SheltersController < ApplicationController
       redirect_to '/shelters'
     else
       flash[:notice] = shelter.errors.full_messages.to_sentence
-      redirect_to '/shelters/new'
-    end
-
+      redirect_to "/shelters/new"
+    end 
   end
 
   def edit

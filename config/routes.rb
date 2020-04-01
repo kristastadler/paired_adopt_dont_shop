@@ -33,8 +33,7 @@ Rails.application.routes.draw do
   #favorites
   get '/favorites', to: 'favorites#index'
   patch '/favorites/:pet_id', to: 'favorites#update'
-  delete '/favorites/:pet_id', to: 'favorites#destroy'
-  delete '/favorites', to: 'favorites#destroy_all'
+  delete '/favorites', to: 'favorites#destroy'
 
   #applications
   get '/applications/new', to: 'applications#new'
@@ -43,7 +42,7 @@ Rails.application.routes.draw do
   get '/applications/:application_id', to: 'applications#show'
 
   #pet applications
-  get '/pets/:pet_id/applications', to: 'pet_applications#show'
+  get '/pets/:pet_id/applications', to: 'pet_applications#index'
   patch '/pets/:pet_id/:application_id', to: 'pet_applications#update'
 
 end

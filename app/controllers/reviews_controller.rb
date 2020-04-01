@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to "/shelters/#{@shelter.id}"
     else
-      flash[:notice] = "Review not created: Please fill in a title, rating, and content in order to submit a shelter review."
+      flash[:notice] = "Review not created: Please fill in a title, rating (1-5), and content in order to submit a shelter review."
       render :new
     end
   end
@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
       redirect_to "/shelters/#{review.shelter_id}"
     else
       redirect_to "/shelters/#{review.shelter_id}/reviews/#{review.id}/edit"
-      flash[:notice] = "Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review."
+      flash[:notice] = "Review not created: Please fill in a title, rating (1-5), and content in order to edit a shelter review."
     end
   end
 

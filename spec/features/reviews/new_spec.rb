@@ -69,18 +69,18 @@ RSpec.describe "As a visitor", type: :feature do
 
     click_on "Submit"
 
-    expect(page).to have_content("Review not created: Please fill in a title, rating, and content in order to submit a shelter review.")
+    expect(page).to have_content("Review not created: Please fill in a title, rating (1-5), and content in order to submit a shelter review.")
     expect(page).to have_button('Submit')
 
     fill_in :title, with: "Lovely animal shelter"
     fill_in :content, with: "Adopted a new dog"
-    expect(page).to have_content("Review not created: Please fill in a title, rating, and content in order to submit a shelter review.")
+    expect(page).to have_content("Review not created: Please fill in a title, rating (1-5), and content in order to submit a shelter review.")
     expect(page).to have_button('Submit')
 
 
     fill_in :rating, with: 3
     fill_in :content, with: "Adopted a new dog"
-    expect(page).to have_content("Review not created: Please fill in a title, rating, and content in order to submit a shelter review.")
+    expect(page).to have_content("Review not created: Please fill in a title, rating (1-5), and content in order to submit a shelter review.")
     expect(page).to have_button('Submit')
   end
 end

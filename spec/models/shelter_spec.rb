@@ -7,6 +7,7 @@ describe Shelter, type: :model do
     it {should validate_presence_of :city}
     it {should validate_presence_of :state}
     it {should validate_presence_of :zip}
+    it {should validate_length_of(:zip).is_equal_to(5)}
   end
 
   describe "relationships" do
@@ -44,7 +45,7 @@ describe Shelter, type: :model do
                                        phone_number: "phone_number",
                                        description: "description")
       
-                                       luna = ApplicationPet.create(application_id: application.id, pet_id: luna.id)
+      luna = ApplicationPet.create(application_id: application.id, pet_id: luna.id)
       nova = ApplicationPet.create(application_id: application.id, pet_id: nova.id)
 
       expect(shelter_1.count_approved_applications).to eq(0)

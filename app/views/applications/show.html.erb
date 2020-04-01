@@ -1,23 +1,24 @@
 <h3>Application <%= @application.id %></h3>
 
-
-Name: <%= @application.name%></br>
-Address: <%= @application.address%></br>
-City: <%= @application.city %></br>
-State: <%= @application.state %></br>
-Zip: <%= @application.zip %></br>
-Phone Number: <%= @application.phone_number %></br>
-Description: <%= @application.description %></br>
-Pets I'm Interested In Adopting:
-<% @application.pets.each do |pet| %>
-  <section id="applicationpet-<%= pet.id %>">
-  <%= link_to pet.name, "/pets/#{pet.id}" %></br>
-  <% if pet.status == "Adoptable" %>
-    <%= link_to "Approve Application", "/pets/#{pet.id}/#{@application.id}", method: :patch %></br></br>
-  <% else %>
-    <%= link_to "Rescind Application", "/pets/#{pet.id}/#{@application.id}", method: :patch %></br></br>
+<div>
+  Name: <%= @application.name%></br>
+  Address: <%= @application.address%></br>
+  City: <%= @application.city %></br>
+  State: <%= @application.state %></br>
+  Zip: <%= @application.zip %></br>
+  Phone Number: <%= @application.phone_number %></br>
+  Description: <%= @application.description %></br>
+  Pets I'm Interested In Adopting:
+  <% @application.pets.each do |pet| %>
+    <section id="applicationpet-<%= pet.id %>">
+    <%= link_to pet.name, "/pets/#{pet.id}" %></br>
+    <% if pet.status == "Adoptable" %>
+      <%= link_to "Approve Application", "/pets/#{pet.id}/#{@application.id}", method: :patch %></br></br>
+    <% else %>
+      <%= link_to "Rescind Application", "/pets/#{pet.id}/#{@application.id}", method: :patch %></br></br>
+    <% end %>
+    </section>
   <% end %>
-  </section>
-<% end %>
 
-<%= link_to "Approve Application for All Pets", "/applications/#{@application.id}", method: :post %>
+  <%= link_to "Approve Application for All Pets", "/applications/#{@application.id}", method: :post %>
+</div>

@@ -4,7 +4,7 @@
   <section class='pet-info'>
     <%= image_tag(@pet.image, size: "200x200") %></br>
     Description: <%= @pet.description%></br>
-    Age: <%= @pet.age%></br>
+    Age: <%= @pet.age %></br>
     Gender: <%= @pet.sex%></br>
     Adoption Status: <%= @pet.status %></br>
     <% if @pet.approved_application != nil %>
@@ -17,7 +17,7 @@
     <% end %>
 
   </section></br>
-</div
+</div>
 
 <div>
   <h2>Additional Actions:</h2>

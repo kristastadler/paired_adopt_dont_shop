@@ -1,4 +1,4 @@
-<h3>Edit Review #<%= @review.id %> for <%= @review.shelter.name %>:</h3>
+<h3>Edit Review #<%= @review.id %> for <%= link_to @review.shelter.name, "/shelters/#{@review.shelter.id}" %>:</h3>
 <div>
   <%= form_tag "/shelters/#{@review.shelter_id}/reviews/#{@review.id}", method: :patch do %>
     <%= label_tag :title %>

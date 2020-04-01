@@ -89,8 +89,7 @@ RSpec.describe "As a visitor", type: :feature do
     fill_in :city, with: "Arvada"
     click_on "Submit"
 
-    expect(page).to have_content("State can't be blank and Zip can't be blank")
-
+    expect(page).to have_content("State can't be blank, Zip can't be blank, and Zip is the wrong length (should be 5 characters)")
     end
   end
 end

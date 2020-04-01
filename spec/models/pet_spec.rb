@@ -8,6 +8,7 @@ describe Pet, type: :model do
     it {should validate_presence_of :image}
     it {should validate_presence_of :status}
     it {should validate_inclusion_of(:age).in_range(1..25)}
+    it {should validate_inclusion_of(:sex).in_array(["Male", "Female", "male", "female"])}
     it {should validate_numericality_of(:age).is_greater_than(0)}
   end
 

@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20200330035814) do
     t.string "address"
     t.string "city"
     t.string "state"
-    t.integer "zip"
+    t.string "zip"
   end
 
   add_foreign_key "application_pets", "applications"

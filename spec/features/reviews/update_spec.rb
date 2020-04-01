@@ -128,7 +128,7 @@ RSpec.describe "As a visitor,", type: :feature do
       fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
       click_on "Submit"
 
-      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+      expect(page).to have_content("Review not created: Please fill in a title, rating (1-5), and content in order to edit a shelter review.")
 
       fill_in :title, with: "Awesome shelter"
       fill_in :rating, with: ""
@@ -136,7 +136,7 @@ RSpec.describe "As a visitor,", type: :feature do
       fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
       click_on "Submit"
 
-      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+      expect(page).to have_content("Review not created: Please fill in a title, rating (1-5), and content in order to edit a shelter review.")
 
       fill_in :title, with: ""
       fill_in :rating, with: 5
@@ -144,7 +144,7 @@ RSpec.describe "As a visitor,", type: :feature do
       fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
       click_on "Submit"
 
-      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+      expect(page).to have_content("Review not created: Please fill in a title, rating (1-5), and content in order to edit a shelter review.")
 
       fill_in :title, with: ""
       fill_in :rating, with: ""
@@ -152,7 +152,7 @@ RSpec.describe "As a visitor,", type: :feature do
       fill_in :image, with: "https://i.pinimg.com/474x/d9/b0/93/d9b09371c75d563b2a552d6db33020aa--shade-for-dogs-dog-shade-ideas.jpg"
       click_on "Submit"
 
-      expect(page).to have_content("Review not created: Please fill in a title, rating, and/or content in order to edit a shelter review.")
+      expect(page).to have_content("Review not created: Please fill in a title, rating (1-5), and content in order to edit a shelter review.")
     end
   end 
 end

@@ -43,7 +43,7 @@ RSpec.describe "As a visitor,", type: :feature do
       click_on "Create Pet"
 
       expect(page).to have_content("Name can't be blank")
-      expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
+      expect(current_path).to eq("/shelters/#{shelter_1.id}/pets/new")
     end
   end 
 end

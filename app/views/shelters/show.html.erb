@@ -33,9 +33,9 @@
 
 <div>
   <h2>Shelter Statistics:</h2>
-    Count of Pets in this Shelter: <%= @shelter.pets.count %></li>
-    Average Review Rating: <%= @shelter.avg_review %>
-    Number of Applications on File: <%= @shelter.app_count %>  
+    Count of Pets in this Shelter: <%= @shelter.pets.count %></br>
+    Average Review Rating: <%= @shelter.avg_review.round(1) %></br>
+    Number of Applications on File: <%= @shelter.app_count %>
 </div>
 
 <div>

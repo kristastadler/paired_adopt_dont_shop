@@ -5,9 +5,9 @@
     <div>
       <section id="pet-<%= pet.id %>">
         <%= image_tag(pet.image, size: "200x200") %></br>
-        <%= link_to pet.name, "/pets/#{pet.id}" %></br>
+        <%= link_to pet.name.capitalize, "/pets/#{pet.id}" %></br>
         <%= pet.age %></br>
-        <%= pet.sex %></br>
+        <%= pet.sex.capitalize %></br>
         <%= link_to "Update Pet", "/pets/#{pet.id}/edit" %></br></br>
       </section>
     </div>

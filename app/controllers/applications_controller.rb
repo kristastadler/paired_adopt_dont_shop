@@ -1,13 +1,7 @@
 class ApplicationsController < ApplicationController
 
   def new
-    @pets = []
-    Pet.all.each do |pet|
-      if favorites.contents.has_key?(pet.id.to_s)
-        @pets << pet
-      end
-    end
-    @pets
+    @pets = Pet.find(favorites.contents.keys)
   end
 
   def create
@@ -36,7 +30,7 @@ class ApplicationsController < ApplicationController
     @application.pets.each do |pet|
       pet.update(status: "Pending Adoption", approved_application: @application.id)
       pet.save
-    end 
+    end
   end
 
 private
